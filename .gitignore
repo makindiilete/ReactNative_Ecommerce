@@ -1,0 +1,24 @@
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+CLASS/
+.vscode/
+
+# macOS
+.DS_Store
+.idea/codeStyles/Project.xml
+.expo-shared/assets.json
+.idea/DoneWithIt.iml
+.idea/encodings.xml
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/watcherTasks.xml
