@@ -1,21 +1,49 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
 import { AppText } from "./AppText";
 import colors from "../config/colors";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { AntDesign } from "@expo/vector-icons";
 
-const ListItem = (props) => (
-  <View style={styles.container}>
-    <Image style={styles.image} source={props.image} />
-    <View>
-      <AppText style={styles.title}>{props.title} </AppText>
-      <AppText style={styles.subTitle}>{props.subTitle} </AppText>
-    </View>
-  </View>
+const ListItem = ({
+  renderRightActions,
+  onPress,
+  image,
+  title,
+  subTitle,
+  IconComponent,
+  swipeAble = false,
+}) => (
+  <Swipeable renderRightActions={renderRightActions}>
+    <TouchableHighlight onPress={onPress} underlayColor={colors.light}>
+      <View style={styles.container}>
+        {IconComponent}
+        {image && <Image style={styles.image} source={image} />}
+        <View style={styles.detailContainer}>
+          <AppText style={styles.title}>{title} </AppText>
+          {subTitle && <AppText style={styles.subTitle}>{subTitle} </AppText>}
+        </View>
+        <View
+          style={{
+            right: 20,
+            alignSelf: "center",
+            position: "absolute",
+          }}
+        >
+          {swipeAble && (
+            <AntDesign name="doubleright" size={12} color={colors.light} />
+          )}
+        </View>
+      </View>
+    </TouchableHighlight>
+  </Swipeable>
 );
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    padding: 15,
+    backgroundColor: colors.ListColor,
   },
   image: {
     width: 70,
@@ -28,6 +56,10 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: colors.medium,
+  },
+  detailContainer: {
+    marginLeft: 10,
+    justifyContent: "center",
   },
 });
 export default ListItem;
